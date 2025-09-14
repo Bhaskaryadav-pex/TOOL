@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Title Generator - YADAV SOFTWARE</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #F8F9FA;
+            color: #0A192F;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #0F172A;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 1s;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #22D3EE, #FFFFFF);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .logo-circle span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #;
+        }
+
+        .header h1 {
+            color: #F0FDF4;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation Styles */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #9333EA;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #F472B6;
+            color: #F472B6;
+            transform: translateY(-2px);
+        }
+
+        /* Toggle Button */
+        .toggle-button {
+            background: #66FCF4;
+            color: #1F2837;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            background: #45A29E;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #FDF2F8;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #66FCF1;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        #inputTitle {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 16px;
+            border: 2px solid #F472B6;
+            border-radius: 5px;
+            background: #F472B6;
+            color: #FDF2F8;
+        }
+
+        button {
+            background-color: #66FCF1;
+            color: #1F2833;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45A29E;
+            transform: translateY(-2px);
+        }
+
+        #results {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .result-item {
+            padding: 15px;
+            background-color: #0B0C10;
+            border-radius: 5px;
+            border-left: 4px solid #66FCF1;
+            animation: fadeIn 0.5s ease-in;
+            color: #C5C6C7;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: #1F2833;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #C5C6C7;
+            border-top: 2px solid #66FCF1;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #C5C6C7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #60FCF1;
+            transform: translateY(-2px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #C5C6C7;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #60FCF1;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .toggle-button {
+                width: 100%;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-circle">
+                <span>YS</span>
+            </div>
+            <h1>Yadav software  YT Title Generator</h1>
+        </div>
+        <div class="toolbar">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="toggle-button">Toggle View</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>YouTube Title Generator</h1>
+        <input type="text" id="inputTitle" placeholder="Enter your video topic...">
+        <button onclick="generateTitles()">Generate Titles</button>
+        <div id="results"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">&#xf09a;</a> <!-- Facebook Icon -->
+            <a href="https://twitter.com" target="_blank">&#xf099;</a> <!-- Twitter Icon -->
+            <a href="https://linkedin.com" target="_blank">&#xf0e1;</a> <!-- LinkedIn Icon -->
+            <a href="https://instagram.com" target="_blank">&#xf16d;</a> <!-- Instagram Icon -->
+        </div>
+        <p>&copy; 2025 Yadav software. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const powerWords = [
+            "Ultimate Guide", "Shocking", "Secret", "Pro Tips", 
+            "BEST", "Worst", "Insane", "Unbelievable", "Must-See", 
+            "Hacks", "2024", "2025", "Exposed", "Revealed", "Finally", 
+            "Discover", "Amazing", "Surprising", "Critical", "Essential"
+        ];
+
+        const templates = [
+            "{power1} {number} {topic} {power2} {phrase}",
+            "{number} {power1} Ways to {topic}",
+            "{topic}: {power1} {phrase} ({year})",
+            "{power1} {topic} {power2} - {phrase}",
+            "How to {topic} - {power1} Guide",
+            "{number} {power1} {topic} Tricks {phrase}",
+            "Why {topic} is {power1} {phrase}",
+            "{topic} {power1} Secrets {phrase}",
+            "The Truth About {topic} {power1}",
+            "{power1} {topic} Tutorial ({year}) {phrase}"
+        ];
+
+        const phrases = [
+            "You Won't Believe!", "Every Beginner Should Know", 
+            "They Don't Want You to Know", "Click to Find Out", 
+            "Here's Why", "Before It's Too Late", "Expert Advice", 
+            "That Will Blow Your Mind", "The Complete Breakdown", 
+            "What Nobody Tells You"
+        ];
+
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function toTitleCase(str) {
+            return str.replace(/\w\S*/g, txt => 
+                txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+            );
+        }
+
+        function generateTitle(topic) {
+            const template = getRandomItem(templates);
+            const year = Math.random() > 0.5 ? "2024" : "2025";
+            const number = Math.floor(Math.random() * 20) + 1;
+            
+            return template
+                .replace(/{topic}/g, toTitleCase(topic))
+                .replace(/{power1}/g, getRandomItem(powerWords))
+                .replace(/{power2}/g, getRandomItem(powerWords))
+                .replace(/{phrase}/g, getRandomItem(phrases))
+                .replace(/{year}/g, year)
+                .replace(/{number}/g, number);
+        }
+
+        function generateTitles() {
+            const input = document.getElementById("inputTitle").value.trim();
+            if (!input) {
+                alert("Please enter a topic first!");
+                return;
+            }
+
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+            
+            const titles = new Set();
+            while (titles.size < 20) {
+                titles.add(generateTitle(input));
+            }
+
+            titles.forEach(title => {
+                const div = document.createElement("div");
+                div.className = "result-item";
+                div.textContent = title;
+                resultsContainer.appendChild(div);
+            });
+        }
+    </script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '4816aecca53dc2c0950224417604247a',
+		'format' : 'iframe',
+		'height' : 50,
+		'width' : 320,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/4816aecca53dc2c0950224417604247a/invoke.js"></script>
+</body>
+</html>
